@@ -2,7 +2,9 @@
 ## Software Engineering Integral Final Work
 
 This repository holds all the codebase for the BackEnd server used in the development of the application found in
-http://elecciones2019.fi.uba.ar/. All this code, as well as all the code you can find 
+http://elecciones2019.fi.uba.ar/. 
+
+All this code, as well as all the code you can find 
 [here](https://github.com/RodrigoDeRosa/eleccionesFrontEnd) was designed, coded and tested by a team integrated by 
 [Rodrigo De Rosa](https://github.com/RodrigoDeRosa), 
 [Facundo Guerrero](https://github.com/facuguerrero) and 
