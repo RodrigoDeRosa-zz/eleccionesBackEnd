@@ -1,15 +1,13 @@
 # Twitter: Argentinian Elections 2019
 ## Software Engineering Integral Final Work
 
-This repository holds all the codebase for the BackEnd server used in the development of the application found in
+This repository holds all the codebase for the Back End server used in the development of the application found in
 http://elecciones2019.fi.uba.ar/. 
-
-All this code, as well as all the code you can find 
-[here](https://github.com/RodrigoDeRosa/eleccionesFrontEnd) was designed, coded and tested by a team integrated by 
-[Rodrigo De Rosa](https://github.com/RodrigoDeRosa), 
-[Facundo Guerrero](https://github.com/facuguerrero) and 
-[Marcos Schapira](https://github.com/marcossch) in the context of the Software Engineering integral final work at the
-University of Buenos Aires. In this readme, the basics of this application will be explained as well as how to run it.
+All this code, as well as all the code you can find [here](https://github.com/RodrigoDeRosa/eleccionesFrontEnd) was 
+designed, coded and tested by a team integrated by [Rodrigo De Rosa](https://github.com/RodrigoDeRosa), 
+[Facundo Guerrero](https://github.com/facuguerrero) and [Marcos Schapira](https://github.com/marcossch) in the context 
+of the Software Engineering integral final work at the University of Buenos Aires. In this readme, the basics of this 
+application will be explained as well as how to run it.
 
 ## What is this project about?
 
@@ -101,3 +99,41 @@ What we did here was, for each party, count the number of other users (in total)
 and, from that number, get the proportion of follows that were "outside" of the party the user in question supported.
 This allowed us to analyze how polarized our universe of users was because we knew exactly how tight were the connections
 between users with the same ideology and how loose between those with different political views.
+
+## Technologies used
+
+This application was developed as a Python [Flask](https://flask.palletsprojects.com/en/1.1.x/) server, with a 
+[MongoDB](https://www.mongodb.com/) as a database management service. The decision was made based on the simplicity of 
+Flask and the non relational characteristics of our data. Although it was not necessary for this application to be a web
+server, it simplified the process of activating a deactivating some features by simply making requests.
+
+To simplify our work, we used some already developed libraries that made our job easier in some aspects. To mention a
+few:
+
+* [APScheduler](https://apscheduler.readthedocs.io/en/stable/) was used to start analysis jobs every day, to analyze the
+collected data and generate new metrics. This library allowed us to set the time of start for each of our processes, 
+which ran periodically.
+* [Twython](https://twython.readthedocs.io/en/latest/) allowed us to retrieve all the data we needed from Twitter 
+services.
+* [numpy](https://numpy.org/), [pandas](https://pandas.pydata.org/), [scipy](https://www.scipy.org/) and 
+[sklearn](https://scikit-learn.org/stable/) were all used to handle large data sets and large matrix multiplications, and
+mainly used for similarity calculations.
+* [mongomock](https://github.com/mongomock/mongomock) allowed us to develop tests where we wanted to simulate the access
+to our database.
+* [Slack Client](https://slack.dev/python-slackclient/) was used as a communication tool; it let us send messages to 
+Slack rooms when certain situations we were particularly interested in presented.
+
+## Deployment
+
+This application was running in a server owned by the University of Buenos Aires and was deployed there using the
+`startup` script; there, we injected the database parameters (which were only stored in the server for security) to
+connect with an specific user and password. The deployment was made manually via SCP due to university's restrictions.
+
+## How to run the server locally
+
+In order to run the server locally, first make sure you have installed:
+
+* `Python 3.6`
+* `mongo` running in the port 27017
+
+Once that is ready, you can start the server by running `make prepare` and `make run` in the project's root.
